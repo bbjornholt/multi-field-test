@@ -1,0 +1,128 @@
+<html>
+<head>
+
+<style>
+.add_field_button {
+    background: none;
+    border-radius: 4px;
+    border: 1px solid #003366;
+    padding: 2px 4px;
+    text-align: center;
+    text-decoration: none;
+    display: block;
+    font-size: 12px;
+    Font-family: ‘BCSans’, ‘Noto Sans’, Verdana, Arial, sans-serif;
+    font-weight: 300;
+    letter-spacing: 1px;
+    cursor: pointer;
+    color: #003366;
+    }
+.add_field_button:hover {
+    opacity: 0.80;
+    text-decoration: underline;
+    background-color: #003366;
+    color: #FFFFFF;
+    }
+.add_field_button:focus {
+    outline-offset: 1px;
+    outline: 4px solid #3B99FC;
+    }
+.add_field_button:active {
+    opacity: 1;
+    }
+
+<!-- text input (single line) styling -->
+
+.text_input {
+  font-family: ‘BCSans’, ‘Noto Sans’, Verdana, Arial, sans-serif;
+  font-size: 18px;
+}
+
+.text_input {
+  height: 34px;
+  border: 2px solid #606060;
+  margin-top: 5px;
+  margin-bottom: 15px;
+  border-radius: 4px;
+  padding: 5px 5px 5px 7px;
+  width:50%;
+}
+
+.text_input[type="text"]:focus {
+    outline: 4px solid #3B99FC;
+    outline-offset: 1px;
+
+}
+
+<!-- text area (multi-line) styling -->
+
+
+.text_input {
+  font-family: ‘BCSans’, ‘Noto Sans’, Verdana, Arial, sans-serif;
+  font-size: 18px;
+  border: 2px solid #606060;
+  margin-top: 5px;
+  margin-bottom: 15px;
+  border-radius: 4px;
+  padding: 5px;
+  resize: none;
+}
+
+.text_input:focus {
+    outline: 1px solid #3B99FC;
+    outline-offset: 1px;
+}
+
+.text_label {
+  display: flex;
+}
+
+.remove_field {
+
+	height: 128px;
+	width: 128px;
+	}
+
+</style>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+
+<script>
+$(document).ready(function() {
+	var max_fields      = 10; //maximum input boxes allowed
+	var wrapper   		= $(".input_fields_wrap"); //Fields wrapper
+	var add_button      = $(".add_field_button"); //Add button ID
+	
+	var x = 1; //initlal text box count
+	$(add_button).click(function(e){ //on add input button click
+		e.preventDefault();
+		if(x < max_fields){ //max input box allowed
+			x++; //text box increment
+			$(wrapper).append('<div><input type="text" class="text_input" name="mytext[]"/><a href="#" class="remove_field"><img src="close-circle.png" width="28px" height="28px" valign="middle"> </a></div>'); //add input box
+		}
+	});
+	
+	$(wrapper).on("click",".remove_field", function(e){ //user click on remove text
+		e.preventDefault(); $(this).parent('div').remove(); x--;
+	})
+});
+</script>
+
+
+</head>
+
+<body>
+
+<div class="input_fields_wrap">
+<button class="add_field_button">+ Add another</button>
+	
+    <div><input type="text" class="text_input" name="mytext[]"></div>
+
+</div>
+
+
+
+</body>
+
+
+</html>
